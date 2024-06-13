@@ -12,6 +12,7 @@
                     name="preview-size"
                     value="{{ size.name }}"
                     data-device-width="{{ size.device_width }}"
+                    data-template-name="{{ size.template_name }}"
                     {% if size.default_size %}checked{% endif %}
                     aria-label="{% trans size.label %}"
                 />

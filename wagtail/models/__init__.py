@@ -670,6 +670,8 @@ class PreviewableMixin:
 
         # Add a flag to let middleware know that this is a dummy request.
         request.is_dummy = True
+        # Handle custom templates set in preview sizes
+        request.template_name = original_request.GET.get("template_name")
 
         if extra_request_attrs:
             for k, v in extra_request_attrs.items():
@@ -833,6 +835,7 @@ class PreviewableMixin:
         - `device_width`: An integer indicating the device's width in pixels.
         - `default_size`: A boolean, set to `True` for the default preview size.
         - `label`: A string for the label displayed on the preview size button.
+        - `template_name`: A string representing the path to the template to use for the preview size, optional.
 
         Example:
             return [
@@ -841,7 +844,8 @@ class PreviewableMixin:
                     'icon': 'mobile-icon',
                     'device_width': 320,
                     'default_size': False,
-                    'label': 'Mobile'
+                    'label': 'Mobile',
+                    'template_name': 'path/to/specific_template.html',
                 },
                 # Add more preview size dictionaries as needed.
             ]
@@ -2035,7 +2039,7 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
             return self.template
 
     def get_preview_template(self, request, mode_name):
-        return self.get_template(request)
+        return request.template_name or self.get_template(request)
 
     def serve(self, request, *args, **kwargs):
         request.is_preview = False
