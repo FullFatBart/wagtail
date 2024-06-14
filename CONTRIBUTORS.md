@@ -820,6 +820,9 @@
 * Matthias Brück
 * Julie Rymer
 * Byron Peebles
+* Arnar Tumi Þorsteinsson
+* Roel Koper
+* Inju Michorius
 
 ## Translators
 
