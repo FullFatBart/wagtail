@@ -671,7 +671,7 @@ class PreviewableMixin:
         # Add a flag to let middleware know that this is a dummy request.
         request.is_dummy = True
         # Handle custom templates set in preview sizes
-        request.template_name = original_request.GET.get("template_name")
+        request.template_name = original_request.GET.get("template_name") if original_request else None
 
         if extra_request_attrs:
             for k, v in extra_request_attrs.items():
