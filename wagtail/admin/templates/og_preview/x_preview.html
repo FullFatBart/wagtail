@@ -1,0 +1,73 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="twitter-preview preview-container">
+    <div class="card">
+        <div class="card-container">
+            <div class="image-container">
+                <div class="aspect-ratio-box">
+                    {% picture page.get_meta_image format-{avif,webp,jpeg} class="image-full" %}
+                    <div class="card-title">{{ page.get_meta_title }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="from-link">
+            From <a href="{{ request.get_host }}">{{ request.get_host }}</a>
+        </div>
+    </div>
+</div>
+<style>
+    .twitter-preview {
+        .from-link {
+            margin-left: 0.5rem;
+            font-size: 1em;
+        }
+
+        .card {
+            position: relative;
+            margin: 0.5rem;
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #e1e8ed;
+            box-shadow: none;
+        }
+
+        .image-container {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .aspect-ratio-box {
+            position: relative;
+            width: 100%;
+            padding-top: 52.33%;
+        }
+
+        .image-full {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 1em;
+            font-family: Helvetica, sans-serif;
+            color: white;
+            background-color: black;
+            padding: 2px 5px;
+            border-radius: 5px;
+            max-width: 95%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+</style>

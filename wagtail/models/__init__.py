@@ -78,6 +78,7 @@ from wagtail.coreutils import (
 )
 from wagtail.fields import StreamField
 from wagtail.forms import TaskStateCommentForm
+from wagtail.images import get_image_model
 from wagtail.locks import BasicLock, ScheduledForPublishLock, WorkflowLock
 from wagtail.log_actions import log
 from wagtail.query import PageQuerySet, SpecificQuerySetMixin
@@ -671,7 +672,9 @@ class PreviewableMixin:
         # Add a flag to let middleware know that this is a dummy request.
         request.is_dummy = True
         # Handle custom templates set in preview sizes
-        request.template_name = original_request.GET.get("template_name") if original_request else None
+        request.template_name = (
+            original_request.GET.get("template_name") if original_request else None
+        )
 
         if extra_request_attrs:
             for k, v in extra_request_attrs.items():
@@ -798,6 +801,38 @@ class PreviewableMixin:
             "device_width": 1280,
             "default_size": False,
             "label": "Preview in desktop size",
+        },
+        {
+            "name": "linkedin",
+            "icon": "linkedin",
+            "device_width": 768,
+            "default_size": False,
+            "label": "LinkedIn",
+            "template_name": "og_preview/linkedin_preview.html",
+        },
+        {
+            "name": "x",
+            "icon": "x",
+            "device_width": 768,
+            "default_size": False,
+            "label": "X (formerly Twitter)",
+            "template_name": "og_preview/x_preview.html",
+        },
+        {
+            "name": "facebook",
+            "icon": "facebook",
+            "device_width": 768,
+            "default_size": False,
+            "label": "Facebook",
+            "template_name": "og_preview/facebook_preview.html",
+        },
+        {
+            "name": "slack",
+            "icon": "slack",
+            "device_width": 768,
+            "default_size": False,
+            "label": "Slack",
+            "template_name": "og_preview/slack_preview.html",
         },
     ]
 
@@ -2813,6 +2848,32 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
             except AttributeError:
                 workflow = None
             return workflow
+
+    @property
+    def get_meta_image(self):
+        if hasattr(self, "og_image"):
+            return self.og_image
+        image_id = (
+            ReferenceIndex.objects.filter(object_id=34)
+            .filter(model_path="image")
+            .first()
+            .to_object_id
+        )
+        return get_image_model().objects.filter(id=image_id).first()
+
+    @property
+    def get_meta_description(self):
+        return (
+            self.og_description
+            if hasattr(self, "og_description")
+            else self.search_description
+        )
+
+    @property
+    def get_meta_title(self):
+        return (
+            self.og_title if hasattr(self, "og_title") else self.seo_title or self.title
+        )
 
     class Meta:
         verbose_name = _("page")
