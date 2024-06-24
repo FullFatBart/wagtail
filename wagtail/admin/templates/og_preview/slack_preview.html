@@ -1,0 +1,84 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="slack-preview preview-container">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-header"><span class="favicon">{% include "wagtailadmin/logo.html" %}</span>{{ request.get_host }}</div>
+            <div class="card-title">{{ page.get_meta_title }}</div>
+            <div class="card-description">{{ page.get_meta_description }}</div>
+        </div>
+        <div class="image-container">
+            {% picture page.get_meta_image format-{avif,webp,jpeg} class="image-full" %}
+        </div>
+    </div>
+</div>
+<style>
+    .slack-preview {
+        .card {
+            margin: 0.5rem;
+            padding-left: 1rem;
+            width: 100%;
+            max-width: 524px;
+            cursor: pointer;
+            font-family: 'Helvetica', sans-serif;
+            border-left: 3px solid #dadde1;
+            display: flex;
+            flex-direction: column;
+            max-height: 500px;
+            background-color: #fff;
+        }
+
+        .card-content {
+            padding-bottom: 12px;
+        }
+
+        .card-header {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1em;
+            font-weight: bold;
+            color: #0056b3;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .card-description {
+            font-size: 1em;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 11;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+        }
+
+        .image-container {
+            min-height: 75px;
+            height: 140px; /* this needs to be set to something for image shrinking to work, but the elements above have grow which makes it not be 270px unless there is almost no description */
+            @media (min-width: 768px) {
+                height: 270px;
+            }
+            .image-full {
+                height: 100%;
+                width: auto;
+                object-fit: contain;
+                border-radius: 10px;
+            }
+        }
+
+        .favicon {
+            display: inline-block;
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background-image: url('/static/svg/index-ventures-logo.svg');
+            background-size: cover;
+            vertical-align: middle;
+        }
+    }
+</style>
