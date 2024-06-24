@@ -218,6 +218,12 @@
 <td> circle-xmark (solid): Font Awesome Pro 6.4.0 </td>
 <td><code>wagtailadmin/icons/error.svg</code></td> </tr>
 <tr>
+<td><svg width="32" height="32" fill="currentColor"><svg id="icon-facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.768 7.465H14.5V5.56c0-.896.594-1.105 1.012-1.105H18.5V.513L14.171.5C10.244.5 9.5 3.438 9.5 5.32v2.145h-3v4h3v12h5v-12h3.851l.417-4z"/></svg>
+</svg></td>
+<td><code>facebook</code></td>
+<td></td>
+<td><td><code>wagtailadmin/icons/facebook.svg</code></td> </tr>
+<tr>
 <td><svg width="32" height="32" fill="currentColor"><svg id="icon-folder-inverse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><!--! folder (solid): Font Awesome Pro 6.4.0 --><path d="M16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.48 1.48 0 0 1 0 13.5v-11A1.5 1.5 0 0 1 1.5 1h5l2 2h6c.813 0 1.5.688 1.5 1.5Z"></path></svg> </svg></td>
 <td><code>folder-inverse</code></td>
 <td> folder (solid): Font Awesome Pro 6.4.0 </td>
@@ -342,6 +348,12 @@
 <td><code>link-external</code></td>
 <td> up-right-from-square (solid): Font Awesome Pro 6.4.0 </td>
 <td><code>wagtailadmin/icons/link-external.svg</code></td> </tr>
+<tr>
+<td><svg width="32" height="32" fill="currentColor"><svg id="icon-linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.527 21.5h-5v-13h5v13zm-2.509-15h-.03C2.478 6.5 1.5 5.318 1.5 4.019c0-1.329 1.008-2.412 2.547-2.412 1.541 0 2.488 1.118 2.519 2.447-.001 1.3-.978 2.446-2.548 2.446zm11.509 6a2 2 0 0 0-2 2v7h-5s.059-12 0-13h5v1.485s1.548-1.443 3.938-1.443c2.962 0 5.062 2.144 5.062 6.304V21.5h-5v-7a2 2 0 0 0-2-2z"/></svg>
+</svg></td>
+<td><code>linkedin</code></td>
+<td></td>
+<td><td><code>wagtailadmin/icons/linkedin.svg</code></td> </tr>
 <tr>
 <td><svg width="32" height="32" fill="currentColor"><svg id="icon-list-ol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><!--! list-ol (solid): Font Awesome Pro 6.4.0 --><path d="M1.629 2.309c0-.383.3-.657.656-.657h.875c.383 0 .656.274.656.657v3.253h.438c.383 0 .656.301.656.657a.632.632 0 0 1-.656.656H2.066a.648.648 0 0 1-.656-.656c0-.356.3-.657.656-.657h.438V2.966h-.219a.665.665 0 0 1-.656-.656Zm1.723 7.793c-.164-.22-.493-.192-.657.027l-.3.41c-.22.3-.63.383-.903.164-.3-.219-.383-.629-.164-.902l.3-.438c.657-.902 1.97-.984 2.708-.136.601.656.574 1.668-.027 2.324l-.957 1.011h.93c.355 0 .655.301.655.657 0 .383-.3.656-.656.656H1.875c-.273 0-.52-.137-.602-.383-.109-.246-.082-.52.11-.71l1.969-2.134a.416.416 0 0 0 0-.546ZM14.125 2.5a.9.9 0 0 1 .875.875c0 .492-.41.875-.875.875h-7a.864.864 0 0 1-.875-.875c0-.465.383-.875.875-.875h7Zm0 4.375A.9.9 0 0 1 15 7.75c0 .492-.41.875-.875.875h-7a.864.864 0 0 1-.875-.875c0-.465.383-.875.875-.875h7Zm0 4.375a.9.9 0 0 1 .875.875c0 .492-.41.875-.875.875h-7a.864.864 0 0 1-.875-.875c0-.465.383-.875.875-.875h7Z"></path></svg> </svg></td>
 <td><code>list-ol</code></td>
@@ -488,6 +500,11 @@
 <td> earth-americas (solid): Font Awesome Pro 6.4.0 </td>
 <td><code>wagtailadmin/icons/site.svg</code></td> </tr>
 <tr>
+<td><svg width="32" height="32" fill="currentColor"><svg id="icon-slack" xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 24 24" role="img"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg></svg></td>
+<td><code>slack</code></td>
+<td></td>
+<td><td><code>wagtailadmin/icons/slack.svg</code></td> </tr>
+<tr>
 <td><svg width="32" height="32" fill="currentColor"><svg id="icon-sliders" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><!--! sliders (solid): Font Awesome Pro 6.4.0 --><path d="M0 13C0 12.4688 0.4375 12 1 12H2.6875C3.09375 11.125 3.96875 10.5 5 10.5C6 10.5 6.875 11.125 7.28125 12H15C15.5312 12 16 12.4688 16 13C16 13.5625 15.5312 14 15 14H7.28125C6.875 14.9062 6 15.5 5 15.5C3.96875 15.5 3.09375 14.9062 2.6875 14H1C0.4375 14 0 13.5625 0 13ZM6 13C6 12.4688 5.53125 12 5 12C4.4375 12 4 12.4688 4 13C4 13.5625 4.4375 14 5 14C5.53125 14 6 13.5625 6 13ZM11 5.5C12 5.5 12.875 6.125 13.2812 7H15C15.5312 7 16 7.46875 16 8C16 8.5625 15.5312 9 15 9H13.2812C12.875 9.90625 12 10.5 11 10.5C9.96875 10.5 9.09375 9.90625 8.6875 9H1C0.4375 9 0 8.5625 0 8C0 7.46875 0.4375 7 1 7H8.6875C9.09375 6.125 9.96875 5.5 11 5.5ZM12 8C12 7.46875 11.5312 7 11 7C10.4375 7 10 7.46875 10 8C10 8.5625 10.4375 9 11 9C11.5312 9 12 8.5625 12 8ZM15 2C15.5312 2 16 2.46875 16 3C16 3.5625 15.5312 4 15 4H8.28125C7.875 4.90625 7 5.5 6 5.5C4.96875 5.5 4.09375 4.90625 3.6875 4H1C0.4375 4 0 3.5625 0 3C0 2.46875 0.4375 2 1 2H3.6875C4.09375 1.125 4.96875 0.5 6 0.5C7 0.5 7.875 1.125 8.28125 2H15ZM5 3C5 3.5625 5.4375 4 6 4C6.53125 4 7 3.5625 7 3C7 2.46875 6.53125 2 6 2C5.4375 2 5 2.46875 5 3Z" /></svg></td>
 <td><code>sliders</code></td>
 <td> sliders (solid): Font Awesome Pro 6.4.0 </td>
@@ -591,4 +608,9 @@
 <td><svg width="32" height="32" fill="currentColor"><svg id="icon-warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 16"><!--! triangle-exclamation (solid): Font Awesome Pro 6.4.0 --><path d="M16.813 13.031 10.155 1.656c-.531-.875-1.812-.875-2.312 0L1.156 13.031c-.5.875.125 1.969 1.157 1.969h13.343a1.316 1.316 0 0 0 1.156-1.969ZM8.25 5.25A.74.74 0 0 1 9 4.5a.76.76 0 0 1 .75.75v4A.74.74 0 0 1 9 10a.76.76 0 0 1-.75-.75v-4ZM9 13a.98.98 0 0 1-1-.969.98.98 0 0 1 1-.969c.531 0 .969.438.969.97A.974.974 0 0 1 9 13Z"></path></svg> </svg></td>
 <td><code>warning</code></td>
 <td> triangle-exclamation (solid): Font Awesome Pro 6.4.0 </td>
-<td><code>wagtailadmin/icons/warning.svg</code></td> </tr> </tbody> </table>
+<td><code>wagtailadmin/icons/warning.svg</code></td> </tr>
+<tr>
+<td><svg width="32" height="32" fill="currentColor"><svg id="icon-x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1200 1227"><path fill="#000" d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"/></svg></svg></td>
+<td><code>x</code></td>
+<td></td>
+<td><td><code>wagtailadmin/icons/x.svg</code></td> </tr> </tbody> </table>
