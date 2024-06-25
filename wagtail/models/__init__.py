@@ -17,7 +17,7 @@ import posixpath
 import uuid
 from io import StringIO
 from typing import TYPE_CHECKING
-from urllib.parse import urlparse
+from urllib.parse import urlsplit
 from warnings import warn
 
 from django import forms
@@ -78,6 +78,7 @@ from wagtail.coreutils import (
 )
 from wagtail.fields import StreamField
 from wagtail.forms import TaskStateCommentForm
+from wagtail.images import get_image_model
 from wagtail.locks import BasicLock, ScheduledForPublishLock, WorkflowLock
 from wagtail.log_actions import log
 from wagtail.query import PageQuerySet, SpecificQuerySetMixin
@@ -670,6 +671,10 @@ class PreviewableMixin:
 
         # Add a flag to let middleware know that this is a dummy request.
         request.is_dummy = True
+        # Handle custom templates set in preview sizes
+        request.template_name = (
+            original_request.GET.get("template_name") if original_request else None
+        )
 
         if extra_request_attrs:
             for k, v in extra_request_attrs.items():
@@ -702,7 +707,7 @@ class PreviewableMixin:
         """
         url = self._get_dummy_header_url(original_request)
         if url:
-            url_info = urlparse(url)
+            url_info = urlsplit(url)
             hostname = url_info.hostname
             path = url_info.path
             port = url_info.port or (443 if url_info.scheme == "https" else 80)
@@ -797,6 +802,38 @@ class PreviewableMixin:
             "default_size": False,
             "label": "Preview in desktop size",
         },
+        {
+            "name": "linkedin",
+            "icon": "linkedin",
+            "device_width": 768,
+            "default_size": False,
+            "label": "LinkedIn",
+            "template_name": "og_preview/linkedin_preview.html",
+        },
+        {
+            "name": "x",
+            "icon": "x",
+            "device_width": 768,
+            "default_size": False,
+            "label": "X (formerly Twitter)",
+            "template_name": "og_preview/x_preview.html",
+        },
+        {
+            "name": "facebook",
+            "icon": "facebook",
+            "device_width": 768,
+            "default_size": False,
+            "label": "Facebook",
+            "template_name": "og_preview/facebook_preview.html",
+        },
+        {
+            "name": "slack",
+            "icon": "slack",
+            "device_width": 768,
+            "default_size": False,
+            "label": "Slack",
+            "template_name": "og_preview/slack_preview.html",
+        },
     ]
 
     @property
@@ -833,6 +870,7 @@ class PreviewableMixin:
         - `device_width`: An integer indicating the device's width in pixels.
         - `default_size`: A boolean, set to `True` for the default preview size.
         - `label`: A string for the label displayed on the preview size button.
+        - `template_name`: A string representing the path to the template to use for the preview size, optional.
 
         Example:
             return [
@@ -841,7 +879,8 @@ class PreviewableMixin:
                     'icon': 'mobile-icon',
                     'device_width': 320,
                     'default_size': False,
-                    'label': 'Mobile'
+                    'label': 'Mobile',
+                    'template_name': 'path/to/specific_template.html',
                 },
                 # Add more preview size dictionaries as needed.
             ]
@@ -2035,7 +2074,7 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
             return self.template
 
     def get_preview_template(self, request, mode_name):
-        return self.get_template(request)
+        return request.template_name or self.get_template(request)
 
     def serve(self, request, *args, **kwargs):
         request.is_preview = False
@@ -2809,6 +2848,34 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
             except AttributeError:
                 workflow = None
             return workflow
+
+    @property
+    def get_meta_image(self):
+        if hasattr(self, "og_image"):
+            return self.og_image
+
+        ref = ReferenceIndex.objects.filter(
+            object_id=self.id, model_path="image"
+        ).first()
+
+        if ref:
+            return get_image_model().objects.filter(id=ref.to_object_id).first()
+
+        return None
+
+    @property
+    def get_meta_description(self):
+        return (
+            self.og_description
+            if hasattr(self, "og_description")
+            else self.search_description
+        )
+
+    @property
+    def get_meta_title(self):
+        return (
+            self.og_title if hasattr(self, "og_title") else self.seo_title or self.title
+        )
 
     class Meta:
         verbose_name = _("page")

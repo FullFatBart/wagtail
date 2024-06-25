@@ -78,50 +78,8 @@ function initPreview() {
   // the content of the preview panel itself is in a child element
   const previewPanel = previewSidePanel.querySelector('[data-preview-panel]');
 
-  //
-  // Preview size handling
-  //
-
-  const sizeInputs = previewPanel.querySelectorAll('[data-device-width]');
-  const defaultSizeInput = previewPanel.querySelector('[data-default-size]');
-
-  const setPreviewWidth = (width) => {
-    const isUnavailable = previewPanel.classList.contains(
-      'preview-panel--unavailable',
-    );
-
-    let deviceWidth = width;
-    // Reset to default size if width is falsy or preview is unavailable
-    if (!width || isUnavailable) {
-      deviceWidth = defaultSizeInput.dataset.deviceWidth;
-    }
-
-    previewPanel.style.setProperty('--preview-device-width', deviceWidth);
-  };
-
-  const togglePreviewSize = (event) => {
-    const device = event.target.value;
-    const deviceWidth = event.target.dataset.deviceWidth;
-
-    setPreviewWidth(deviceWidth);
-    try {
-      localStorage.setItem('wagtail:preview-panel-device', device);
-    } catch (e) {
-      // Skip saving the device if localStorage fails.
-    }
-
-    // Ensure only one device class is applied
-    sizeInputs.forEach((input) => {
-      previewPanel.classList.toggle(
-        `preview-panel--${input.value}`,
-        input.value === device,
-      );
-    });
-  };
-
-  sizeInputs.forEach((input) =>
-    input.addEventListener('change', togglePreviewSize),
-  );
+  // Remember set template name
+  let templateName = null;
 
   const resizeObserver = new ResizeObserver((entries) =>
     previewPanel.style.setProperty(
@@ -166,6 +124,11 @@ function initPreview() {
     // Create a new invisible iframe element
     const newIframe = document.createElement('iframe');
     const url = new URL(previewUrl, window.location.href);
+    if (templateName) {
+      url.searchParams.set('template_name', templateName);
+    } else {
+      url.searchParams.delete('template_name');
+    }
     if (previewModeSelect) {
       url.searchParams.set('mode', previewModeSelect.value);
     }
@@ -212,6 +175,55 @@ function initPreview() {
 
     newIframe.addEventListener('load', handleLoad);
   };
+
+  //
+  // Preview size handling
+  //
+
+  const sizeInputs = previewPanel.querySelectorAll('[data-device-width]');
+  const defaultSizeInput = previewPanel.querySelector('[data-default-size]');
+
+  const setPreviewWidth = (width) => {
+    const isUnavailable = previewPanel.classList.contains(
+      'preview-panel--unavailable',
+    );
+
+    let deviceWidth = width;
+    // Reset to default size if width is falsy or preview is unavailable
+    if (!width || isUnavailable) {
+      deviceWidth = defaultSizeInput.dataset.deviceWidth;
+    }
+
+    previewPanel.style.setProperty('--preview-device-width', deviceWidth);
+  };
+
+  const togglePreviewSize = (event) => {
+    const device = event.target.value;
+    const deviceWidth = event.target.dataset.deviceWidth;
+    const newTemplateName = event.target.dataset.templateName || null;
+    if (templateName !== newTemplateName) {
+      templateName = newTemplateName;
+      reloadIframe();
+    }
+    setPreviewWidth(deviceWidth);
+    try {
+      localStorage.setItem('wagtail:preview-panel-device', device);
+    } catch (e) {
+      // Skip saving the device if localStorage fails.
+    }
+
+    // Ensure only one device class is applied
+    sizeInputs.forEach((input) => {
+      previewPanel.classList.toggle(
+        `preview-panel--${input.value}`,
+        input.value === device,
+      );
+    });
+  };
+
+  sizeInputs.forEach((input) =>
+    input.addEventListener('change', togglePreviewSize),
+  );
 
   const clearPreviewData = () =>
     fetch(previewUrl, {
