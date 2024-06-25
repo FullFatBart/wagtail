@@ -2853,13 +2853,15 @@ class Page(AbstractPage, index.Indexed, ClusterableModel, metaclass=PageBase):
     def get_meta_image(self):
         if hasattr(self, "og_image"):
             return self.og_image
-        image_id = (
-            ReferenceIndex.objects.filter(object_id=34)
-            .filter(model_path="image")
-            .first()
-            .to_object_id
-        )
-        return get_image_model().objects.filter(id=image_id).first()
+
+        ref = ReferenceIndex.objects.filter(
+            object_id=self.id, model_path="image"
+        ).first()
+
+        if ref:
+            return get_image_model().objects.filter(id=ref.to_object_id).first()
+
+        return None
 
     @property
     def get_meta_description(self):
