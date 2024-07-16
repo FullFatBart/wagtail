@@ -205,6 +205,8 @@ WAGTAILADMIN_EXTERNAL_LINK_CONVERSION = 'exact'
 
 Customize Wagtail's behavior when an internal page url is entered in the external link chooser. Possible values for this setting are `'all'`, `'exact'`, `'confirm`, or `''`. The default, `'all'`, means that Wagtail will automatically convert submitted urls that exactly match page urls to the corresponding internal links. If the url is an inexact match - for example, the submitted url has query parameters - then Wagtail will confirm the conversion with the user. `'exact'` means that any inexact matches will be left as external urls, and the confirmation step will be skipped. `'confirm'` means that every link conversion will be confirmed with the user, even if the match is exact. `''` means that Wagtail will not attempt to convert any urls entered to internal page links.
 
+If the url is relative, Wagtail will not convert the link if there are more than one {class}`~wagtail.models.Site` instances. This is to avoid accidentally matching coincidentally named pages on different sites.
+
 (wagtail_date_time_formats)=
 
 ### `WAGTAIL_DATE_FORMAT`, `WAGTAIL_DATETIME_FORMAT`, `WAGTAIL_TIME_FORMAT`
@@ -502,6 +504,8 @@ WAGTAILADMIN_USER_PASSWORD_RESET_FORM = 'users.forms.PasswordResetForm'
 
 Allows the default `PasswordResetForm` to be extended with extra fields.
 
+(user_form_settings)=
+
 ### `WAGTAIL_USER_EDIT_FORM`
 
 ```python
@@ -510,7 +514,9 @@ WAGTAIL_USER_EDIT_FORM = 'users.forms.CustomUserEditForm'
 
 Allows the default `UserEditForm` class to be overridden with a custom form when a custom user model is being used and extra fields are required in the user edit form.
 
-For further information See {doc}`/advanced_topics/customisation/custom_user_models`.
+```{versionchanged} 6.2
+This setting has been deprecated in favor of customizing the form classes via `UserViewSet.get_form_class()` and will be removed in a future release. For further information, see [](custom_userviewset).
+```
 
 ### `WAGTAIL_USER_CREATION_FORM`
 
@@ -520,7 +526,9 @@ WAGTAIL_USER_CREATION_FORM = 'users.forms.CustomUserCreationForm'
 
 Allows the default `UserCreationForm` class to be overridden with a custom form when a custom user model is being used and extra fields are required in the user creation form.
 
-For further information See {doc}`/advanced_topics/customisation/custom_user_models`.
+```{versionchanged} 6.2
+This setting has been deprecated in favor of customizing the form classes via `UserViewSet.get_form_class()` and will be removed in a future release. For further information, see [](custom_userviewset).
+```
 
 ### `WAGTAIL_USER_CUSTOM_FIELDS`
 
@@ -528,9 +536,11 @@ For further information See {doc}`/advanced_topics/customisation/custom_user_mod
 WAGTAIL_USER_CUSTOM_FIELDS = ['country']
 ```
 
-A list of the extra custom fields to be appended to the default list.
+A list of the extra custom fields to be appended to the default list. The resulting list is passed to {class}`~django.forms.ModelForm`'s `Meta.fields` to generate the form fields.
 
-For further information See {doc}`/advanced_topics/customisation/custom_user_models`.
+```{versionchanged} 6.2
+This setting has been deprecated in favor of customizing the form classes via `UserViewSet.get_form_class()` and will be removed in a future release. For further information, see [](custom_userviewset).
+```
 
 ### `WAGTAILADMIN_USER_LOGIN_FORM`
 
