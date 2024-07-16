@@ -1077,6 +1077,7 @@ def register_icons(icons):
         "edit.svg",
         "expand-right.svg",
         "error.svg",
+        "facebook.svg",
         "folder-inverse.svg",
         "folder-open-1.svg",
         "folder-open-inverse.svg",
@@ -1102,6 +1103,7 @@ def register_icons(icons):
         "keyboard.svg",
         "link.svg",
         "link-external.svg",
+        "linkedin.svg",
         "list-ol.svg",
         "list-ul.svg",
         "lock-open.svg",
@@ -1131,6 +1133,7 @@ def register_icons(icons):
         "rotate.svg",
         "search.svg",
         "site.svg",
+        "slack.svg",
         "sliders.svg",
         "snippet.svg",
         "spinner.svg",
@@ -1152,6 +1155,7 @@ def register_icons(icons):
         "view.svg",
         "wagtail.svg",
         "warning.svg",
+        "x.svg",
     ]:
         icons.append(f"wagtailadmin/icons/{icon}")
     return icons
